@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PWRI2 Weekly Cost Report — 4–11 September 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#17222D;
+    --ink-soft:#4A5A68;
+    --line:#C9D2DA;
+    --line-strong:#8FA0AE;
+    --paper:#FFFFFF;
+    --bg:#EEF1F4;
+    --blueprint:#0F3D5C;
+    --blueprint-deep:#0A2B42;
+    --amber:#C77F17;
+    --red:#B3382C;
+    --red-bg:#FBEDEB;
+    --green:#1E7A4E;
+    --green-bg:#EAF4EE;
+    --neutral-bg:#F2F5F7;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'IBM Plex Sans',Arial,sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    font-size:15px;
+    line-height:1.45;
+  }
+  .sheet{
+    max-width:1080px;
+    margin:24px auto;
+    background:var(--paper);
+    border:1px solid var(--line-strong);
+    box-shadow:0 2px 14px rgba(15,61,92,.10);
+  }
+  .titleblock{border-bottom:3px solid var(--blueprint-deep);display:grid;grid-template-columns:1fr auto;}
+  .tb-main{padding:26px 32px 20px;}
+  .tb-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--blueprint);margin-bottom:8px;}
+  h1{font-family:'IBM Plex Sans Condensed',sans-serif;font-size:34px;font-weight:700;line-height:1.1;color:var(--blueprint-deep);}
+  .tb-sub{margin-top:6px;color:var(--ink-soft);font-size:14px;}
+  .tb-meta{display:grid;grid-template-columns:1fr 1fr;border-left:1px solid var(--line-strong);min-width:320px;}
+  .tb-cell{padding:12px 18px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;justify-content:center;}
+  .tb-cell:nth-child(odd){border-right:1px solid var(--line);}
+  .tb-cell:nth-last-child(-n+2){border-bottom:none;}
+  .tb-label{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);}
+  .tb-value{font-weight:600;font-size:13.5px;margin-top:2px;}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--line-strong);}
+  .kpi{padding:20px 24px;border-right:1px solid var(--line);}
+  .kpi:last-child{border-right:none;}
+  .kpi-label{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);}
+  .kpi-value{font-family:'IBM Plex Mono',monospace;font-size:27px;font-weight:600;margin-top:6px;color:var(--blueprint-deep);font-variant-numeric:tabular-nums;}
+  .kpi-note{font-size:12px;color:var(--ink-soft);margin-top:4px;}
+  .kpi-value.bad{color:var(--red);}
+  .kpi-value.warn{color:var(--amber);}
+  .kpi-value.good{color:var(--green);}
+  section{padding:30px 32px 8px;}
+  section:last-of-type{padding-bottom:34px;}
+  .sec-head{display:flex;align-items:baseline;gap:14px;border-bottom:2px solid var(--blueprint-deep);padding-bottom:8px;margin-bottom:18px;}
+  .sec-no{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;color:var(--amber);letter-spacing:.08em;}
+  h2{font-family:'IBM Plex Sans Condensed',sans-serif;font-size:21px;font-weight:700;color:var(--blueprint-deep);}
+  .sec-note{font-size:12.5px;color:var(--ink-soft);margin-left:auto;font-family:'IBM Plex Mono',monospace;}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin-bottom:20px;}
+  th{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:#fff;background:var(--blueprint);text-align:left;padding:8px 10px;font-weight:500;}
+  th.num,td.num{text-align:right;font-variant-numeric:tabular-nums;}
+  td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top;}
+  td.num{font-family:'IBM Plex Mono',monospace;font-size:13px;}
+  tbody tr:nth-child(even){background:var(--neutral-bg);}
+  tr.total td{border-top:2px solid var(--blueprint-deep);border-bottom:none;font-weight:700;background:#E7EDF2;}
+  tr.total td.num{font-weight:600;}
+  .flag{color:var(--red);font-weight:600;}
+  .asterisk-note{font-size:11.5px;color:var(--ink-soft);margin:-10px 0 20px;font-family:'IBM Plex Mono',monospace;}
+  footer{border-top:2px solid var(--blueprint-deep);padding:14px 32px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink-soft);letter-spacing:.05em;}
+  @media (max-width:900px){
+    .kpis{grid-template-columns:1fr 1fr;}
+    .kpi{border-bottom:1px solid var(--line);}
+    .titleblock{grid-template-columns:1fr;}
+    .tb-meta{border-left:none;border-top:1px solid var(--line-strong);}
+  }
+  @media print{
+    body{background:#fff;}
+    .sheet{margin:0;border:none;box-shadow:none;max-width:none;}
+    section{page-break-inside:avoid;}
+    th,td,tr{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <header class="titleblock">
+    <div class="tb-main">
+      <div class="tb-eyebrow">PWRI2 &middot; Cost Control</div>
+      <h1>Weekly Cost Report</h1>
+      <div class="tb-sub">Earned Value, Actual Cost &amp; CTR Budgeting Status — Civil, Electrical, Mechanical &amp; Scaffolding</div>
+    </div>
+    <div class="tb-meta">
+      <div class="tb-cell"><span class="tb-label">Reporting Period</span><span class="tb-value">4 – 11 September 2026</span></div>
+      <div class="tb-cell"><span class="tb-label">Week</span><span class="tb-value">Week 2 — September 2026</span></div>
+      <div class="tb-cell"><span class="tb-label">Prepared By</span><span class="tb-value">Hussein Ali, Cost Controller</span></div>
+      <div class="tb-cell"><span class="tb-label">Currency</span><span class="tb-value">USD</span></div>
+    </div>
+  </header>
+
+  <div class="kpis">
+    <div class="kpi"><div class="kpi-label">Earned Value (EV)</div><div class="kpi-value">67,341</div><div class="kpi-note">All departments, this week</div></div>
+    <div class="kpi"><div class="kpi-label">Actual Cost (AC)</div><div class="kpi-value">75,345</div><div class="kpi-note">All departments, this week</div></div>
+    <div class="kpi"><div class="kpi-label">CPI</div><div class="kpi-value warn">0.89</div><div class="kpi-note">EV / AC — near budget</div></div>
+    <div class="kpi"><div class="kpi-label">Active CTRs</div><div class="kpi-value">10</div><div class="kpi-note">Contributing EV this week</div></div>
+  </div>
+
+  <!-- ============ 1. DEPARTMENT COST BREAKDOWN ============ -->
+  <section id="breakdown">
+    <div class="sec-head">
+      <span class="sec-no">01</span>
+      <h2>Department Cost Breakdown</h2>
+      <span class="sec-note">4 – 11 Sep 2026</span>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Department</th><th class="num">EV</th><th class="num">AC</th><th class="num">HR Direct</th><th class="num">HR Indirect (Dept)</th><th class="num">HR Indirect (General)</th><th class="num">HR Sub-Manpower</th><th class="num">Log Direct</th><th class="num">Log Indirect</th><th class="num">Subcontractor</th><th class="num">Material</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Civil</td><td class="num">27,414</td><td class="num"><b>31,517</b></td><td class="num">4,266</td><td class="num">3,702</td><td class="num">3,813</td><td class="num">1,258</td><td class="num">10,962</td><td class="num">2,713</td><td class="num">2,603</td><td class="num">2,200</td></tr>
+        <tr><td>Mechanical</td><td class="num">27,992</td><td class="num"><b>24,684</b></td><td class="num">5,204</td><td class="num">3,612</td><td class="num">4,061</td><td class="num">680</td><td class="num">6,956</td><td class="num">2,770</td><td class="num">1,400</td><td class="num">0</td></tr>
+        <tr><td>Electrical</td><td class="num">11,935</td><td class="num"><b>14,018</b></td><td class="num">5,825</td><td class="num">2,130</td><td class="num">1,142</td><td class="num">3,740</td><td class="num">0</td><td class="num">1,181</td><td class="num">0</td><td class="num">0</td></tr>
+        <tr><td>Scaffolding</td><td class="num">0</td><td class="num"><b>5,127</b></td><td class="num">3,578</td><td class="num">0</td><td class="num">0</td><td class="num">340</td><td class="num">1,209</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+        <tr class="total"><td>Total</td><td class="num">67,341</td><td class="num">75,345</td><td class="num">18,873</td><td class="num">9,444</td><td class="num">9,016</td><td class="num">6,018</td><td class="num">19,127</td><td class="num">6,664</td><td class="num">4,003</td><td class="num">2,200</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ============ 2. CTR BUDGETING STATUS ============ -->
+  <section id="ctr">
+    <div class="sec-head">
+      <span class="sec-no">02</span>
+      <h2>CTR Budgeting Status</h2>
+      <span class="sec-note">Sorted by margin, low to high</span>
+    </div>
+    <table>
+      <thead>
+        <tr><th>CTR #</th><th>Description</th><th class="num">Progress</th><th class="num">EV (USD)</th><th class="num">Margin</th><th class="num">Share of EV</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>CN487-PRJ-PWRI2-1669-Rev01</td><td>Civil Construction Work Pack (C500) – NSF Backwash Water Pump Area</td><td class="num">4.1%</td><td class="num">1,731</td><td class="num">19.9%</td><td class="num">2.6%</td></tr>
+        <tr><td>CN487-PRJ-PWRI2-1585-Rev02</td><td>Structural Steel Construction Workpack (P360) – PWT Pipe Rack</td><td class="num">3.8%</td><td class="num">8,097</td><td class="num">24.6%</td><td class="num">12.0%</td></tr>
+        <tr><td>CN487-PRJ-PWRI2-1701-Rev02</td><td>PWRI-02 Civil Construction Workpack (C700) – Return Oil Pump Shelter Area Pipe Supports</td><td class="num">2.9%</td><td class="num">1,659</td><td class="num">40.0%*</td><td class="num">2.5%</td></tr>
+        <tr><td>CN487-PRJ-PWRI2-1513-Rev03</td><td>HVAC Construction Workpack (B300) Electrical Substation Building</td><td class="num">5.1%</td><td class="num">10,224</td><td class="num">40.0%*</td><td class="num">15.2%</td></tr>
+        <tr><td>CN487-PRJ-PWRI2-1469-Rev03</td><td>HVAC Construction Workpack (B200) – Control Room &amp; Welfare Building (PWRI &amp; PWT)</td><td class="num">0.4%</td><td class="num">563</td><td class="num">40.0%*</td><td class="num">0.8%</td></tr>
+        <tr><td>CN487-PRJ-PWRI2-1222-Rev01</td><td>E800 – Lighting and Small Power (Outdoor and Emergency), Civil</td><td class="num">0.8%</td><td class="num">952</td><td class="num">40.0%*</td><td class="num">1.4%</td></tr>
+        <tr><td>CN487-PRJ-PWRI2-1728-Rev02</td><td>Civil Construction Workpack (C100) – IGF Feed Pump Area Grade Slab &amp; Pipe Supports, Pumps Foundations, Pumps Shelter</td><td class="num">6.3%</td><td class="num">13,072</td><td class="num">40.0%*</td><td class="num">19.4%</td></tr>
+        <tr><td>CN487-PRJ-PWRI2-1387-Rev02</td><td>Field Manifold AY45 – Civil</td><td class="num">9.5%</td><td class="num">10,000</td><td class="num">40.0%*</td><td class="num">14.8%</td></tr>
+        <tr><td>CN487-PRJ-PWRI2-1584-Rev04</td><td>PWRI2 PWT Pipe Rack Piping (P310 to P360)</td><td class="num">0.8%</td><td class="num">9,108</td><td class="num">44.1%</td><td class="num">13.5%</td></tr>
+        <tr><td>CN487-PRJ-PWRI2-1565-Rev01</td><td>E600 Electrical Substation Building, Electrical Work</td><td class="num">2.9%</td><td class="num">11,935</td><td class="num">64.2%</td><td class="num">17.7%</td></tr>
+        <tr class="total"><td colspan="3">Total (10 active CTRs)</td><td class="num">67,341</td><td class="num"></td><td class="num">100%</td></tr>
+      </tbody>
+    </table>
+    <div class="asterisk-note">* Margin capped/defaulted at 40.0% in source data — CTR not yet at a measured margin milestone.</div>
+  </section>
+
+  <footer>
+    <span>PWRI2 · WEEKLY COST REPORT · 4–11 SEPTEMBER 2026</span>
+    <span>CREATED BY COST CONTROLLER: HUSSEIN ALI · ALL FIGURES IN USD</span>
+  </footer>
+</div>
+</body>
+</html>
